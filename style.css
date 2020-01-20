@@ -1,3 +1,130 @@
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans+JP&display=swap');
+
+/*=======================================
+*            global elements            *
+=======================================*/
+
 * { 
     box-sizing: border-box;
 }
+
+body {
+    height: 100vh;
+    font-family: 'Noto Sans JP', sans-serif;
+    background: #BCC4DB;
+    color: #7880B5;
+}
+
+.button {
+    color: #7880B5;
+    text-decoration: none;
+    text-transform: uppercase;
+    padding: 1rem 2rem;
+    border: 1px currentColor solid;
+    transition: all 300ms;
+    box-shadow: 0 0 1rem rgba(0, 0, 0, 0.1);
+}
+
+.button:hover {
+    background: #7880B5;
+    color: #BCC4DB;
+    cursor: pointer;
+}
+
+/*==============================
+*            header            *
+==============================*/
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 2rem;
+}
+
+
+/*=================================
+*            container            *
+=================================*/
+
+.container {
+    height: 100%;
+    position: relative;
+    background: transparent;
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+}
+
+.quiz-container {
+    position: absolute;
+    top: 30%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+#title {
+    font-size: 3rem;
+    margin-bottom: 2rem;
+}
+
+/*==============================
+*            ACTIVE            *
+==============================*/
+
+
+
+.quiz-container.active {
+    top: 5%;
+    background: #eee;
+    padding: 3rem;
+    box-shadow: 0 0 1rem rgba(0, 0, 0, 0.15);
+    max-width: 70%;
+}
+
+#title.active {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.quiz-answers {
+    display: none;
+}
+
+.answer {
+    font-size: 1.7rem;
+    width: 100%;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    transition: all 300ms;
+    transform: scaleY(0);
+}
+
+.answer:hover {
+    box-shadow: 0 0 1rem rgba(0, 0, 0, 0.1);
+    cursor:pointer;
+}
+
+.answer.correct {
+    background: #b1fab1;
+    box-shadow: 0 0 1rem rgba(0, 0, 0, 0.1);
+}
+
+.answer.incorrect {
+    background: rgb(255, 168, 168);
+    box-shadow: 0 0 1rem rgba(0, 0, 0, 0.1);
+}
+
+.quiz-answers.active {
+    display: block;
+    transform: scaleY(1);
+}
+
+.answer.active {
+    transform: scaleY(1);
+}
+
+
+
