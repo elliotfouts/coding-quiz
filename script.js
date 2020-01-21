@@ -4,16 +4,38 @@ var quizQuestion = document.querySelector("#title");
 var quizAnswerContainer = document.querySelector(".quiz-answers")
 var quizAnswers = document.querySelectorAll(".answer");
 var quizButton = document.querySelector('#quiz-button');
+var quizContentContainer = document.querySelector('.quiz-content');
+var timer = document.createElement('p');
+var timerMinutes = 2;
+var timerSeconds = 30;
+
 
 function toQuizDisplay () {
     quizContainer.classList.add("active");
     quizQuestion.classList.add("active");   
-    quizAnswerContainer.classList.add("active")
+    quizAnswerContainer.classList.add("active");
+    quizButton.textContent = "Next";
     setTimeout(function(){
         for(var i = 0; i < quizAnswers.length; i++) {
             quizAnswers[i].classList.add("active");
         }
     }, 25);
+    timer.classList.add("active");
+    timer.textContent = timerMinutes + " minutes " + timerSeconds + " seconds";
+    var timerInterval = setInterval( function() {
+        timerSeconds--;
+        timer.textContent = timerMinutes + " minutes " + timerSeconds + " seconds";
+        if (timerMinutes === 0 && timerSeconds === 0) {
+            clearInterval(timerInterval);
+            inputName();
+        }
+        if (timerSeconds === 0) {
+            timerSeconds = 60
+            timerMinutes--;
+        }
+    }, 1000);
+
+    document.querySelector("header").appendChild(timer);
     quizButton.removeEventListener("click", toQuizDisplay);
     nextQuestion();
     quizButton.addEventListener("click", nextQuestion);
@@ -29,27 +51,28 @@ var quizAnswer3 = quizAnswers[2];
 var quizAnswer4 = quizAnswers[3];
 var quizContent = [
     [
-        {question: "Question 1"},
-        {correct: "Answer 1"},
-        {incorrect: "Answer 2"},
-        {incorrect: "Answer 3"},
-        {incorrect: "Answer 4"}
+        {question: "Which method is used to set a delay time before a function is called"},
+        {correct: "setTimeout()"},
+        {incorrect: "setInterval()"},
+        {incorrect: "addDelay()"},
+        {incorrect: "pauseBefore()"}
     ], [
-        {question: "Question 2"},
-        {correct: "Answer 1"},
-        {incorrect: "Answer 2"},
-        {incorrect: "Answer 3"},
-        {incorrect: "Answer 4"}
+        {question: "Which method do we call to prevent bubbling"},
+        {incorrect: "preventDefault()"},
+        {incorrect: "endBubbling()"},
+        {correct: "stopPropogation()"},
+        {incorrect: "dontPropogate()"}
     ], [
-        {question: "Question 3"},
-        {correct: "Answer 1"},
-        {incorrect: "Answer 2"},
-        {incorrect: "Answer 3"},
-        {incorrect: "Answer 4"}
+        {question: "What is the purpose of stringify()"},
+        {incorrect: "gives developer access to string library"},
+        {correct: "converts from an object to a string"},
+        {incorrect: "converts from a string to an object"},
+        {incorrect: 'creates a variable of type "string"'}
     ]
 ]
 var questionCounter = 0;
 var currentQuestion;
+var hasAnswered = false;
 
 
 function nextQuestion() {
@@ -66,16 +89,19 @@ function nextQuestion() {
             quizAnswers[k].classList.remove("incorrect");
             quizAnswers[k].classList.remove("correct");
         }
+        hasAnswered = false;
+        quizAnswerContainer.addEventListener("click", checkAnswer)
+
     } else {
         questionCounter = 0;
-        console.log("end of quiz")
+        quizButton.removeEventListener("click", nextQuestion);
+        inputName();
     }
 
 }
 
 // To check answer
 var answerSelected;
-var hasAnswered = false;
 var correctAnswer;
 var correctAnswerIndex;
 var score = 0;
@@ -94,12 +120,37 @@ function checkAnswer (event) {
 
     if (answerSelected === correctAnswer) {
         event.target.classList.add("correct");
-        score++;
+        score+=10;
     } else {
         event.target.classList.add("incorrect")
     }
 
+    hasAnswered = true;
+    quizAnswerContainer.removeEventListener("click", checkAnswer);
+}
+
+
+// to bring up input after quiz
+var createInput;
+function inputName () {
+    quizButton.textContent = "Submit";
+    quizQuestion.textContent = "Input your name";
+    quizAnswerContainer.classList.remove("active");
+
+    createInput = document.createElement('input');
+    quizContentContainer.appendChild(createInput);
+
+
+    quizButton.addEventListener("click", submitName)
+}
+
+function submitName () {
+    var name = createInput.value;
+    localStorage.setItem("name", name);
+    localStorage.setItem("score", score)
+    window.location.href = "highscore.html";
 
 }
 
-quizAnswerContainer.addEventListener("click", checkAnswer)
+// to end quiz if timer runs out 
+

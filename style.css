@@ -13,6 +13,7 @@ body {
     font-family: 'Noto Sans JP', sans-serif;
     background: #BCC4DB;
     color: #7880B5;
+    overflow: hidden;
 }
 
 .button {
@@ -38,7 +39,7 @@ body {
 header {
     display: flex;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: space-between;
     padding: 2rem;
 }
 
@@ -70,24 +71,9 @@ header {
     margin-bottom: 2rem;
 }
 
-/*==============================
-*            ACTIVE            *
-==============================*/
-
-
-
-.quiz-container.active {
-    top: 5%;
-    background: #eee;
-    padding: 3rem;
-    box-shadow: 0 0 1rem rgba(0, 0, 0, 0.15);
-    max-width: 70%;
-}
-
-#title.active {
-    font-size: 2.5rem;
-    margin-bottom: 1.5rem;
-}
+/*====================================
+*            quiz content            *
+====================================*/
 
 .quiz-answers {
     display: none;
@@ -117,6 +103,48 @@ header {
     box-shadow: 0 0 1rem rgba(0, 0, 0, 0.1);
 }
 
+/*=============================
+*            Input            *
+=============================*/
+
+input {
+    width: 100%;
+    font-size: 1.5rem;
+    padding: 5px;
+    border: 1px #7880B5 solid;
+    margin-bottom: 2rem;
+    color: #7880B5;
+    transition: all 300ms;
+}
+
+input:hover {
+    background: #7880B5;
+    color: #eee;
+}
+
+input:focus {
+    outline: none;
+    background: #7880B5;
+    color: #eee;
+}
+
+/*==============================
+*            ACTIVE            *
+==============================*/
+
+.quiz-container.active {
+    top: 5%;
+    background: #eee;
+    padding: 3rem;
+    box-shadow: 0 0 1rem rgba(0, 0, 0, 0.15);
+    max-width: 70%;
+}
+
+#title.active {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+}
+
 .quiz-answers.active {
     display: block;
     transform: scaleY(1);
@@ -126,5 +154,6 @@ header {
     transform: scaleY(1);
 }
 
-
-
+p.active {
+    font-size: 2rem;
+}
