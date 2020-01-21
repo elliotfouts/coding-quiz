@@ -68,6 +68,48 @@ var quizContent = [
         {correct: "converts from an object to a string"},
         {incorrect: "converts from a string to an object"},
         {incorrect: 'creates a variable of type "string"'}
+    ], [
+        {question: "What does DOM stand for"},
+        {incorrect: "Document Open Module"},
+        {incorrect: "Data-On Mode"},
+        {correct: "Document Object Model"},
+        {incorrect: "Days on Market"}
+    ], [
+        {question: "Which HTML element is used to link an external javascript file"},
+        {incorrect: "<javascript>"},
+        {incorrect: "<link"},
+        {incorrect: "<js>"},
+        {correct: "<script>"}
+    ], [
+        {question: "Which of the following cannot be used to access text in an element"},
+        {incorrect: "innerHTML"},
+        {correct: "textInside"},
+        {incorrect: "textContent"},
+        {incorrect: "innerText"}
+    ], [
+        {question: "Where is the correct location to link an external javascript file"},
+        {correct: "body"},
+        {incorrect: "footer"},
+        {incorrect: "header"},
+        {incorrect: "head"}
+    ], [
+        {question: "How is a function created"},
+        {incorrect: "function myFunction = ()"},
+        {incorrect: "function:myFunction()"},
+        {correct: "function myFunction()"},
+        {incorrect: "function => ()"}
+    ], [
+        {question: "What is the syntax for a callback function"},
+        {correct: "myFunction"},
+        {incorrect: "call myFunction"},
+        {incorrect: "call myFunction()"},
+        {incorrect: "myFunction()"}
+    ], [
+        {question: "How does a while loop start"},
+        {incorrect: "while (i = 0; i < 4; i++)"},
+        {incorrect: "while i = 1 to i = 4"},
+        {incorrect: "while (i < 4; i++)"},
+        {correct: "while (i < 4)"}
     ]
 ]
 var questionCounter = 0;
